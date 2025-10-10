@@ -70,7 +70,12 @@ def divisible_by_k(n, k):
     0
     """
     "*** YOUR CODE HERE ***"
-    ...
+    sum = 0
+    for i in range(n + 1):
+        if i % k == 0 and i != 0:
+            print(i)
+            sum = sum + 1
+    return sum
 
 def sum_digits(y):
     """Sum all the digits of y.
@@ -86,7 +91,11 @@ def sum_digits(y):
     6
     """
     "*** YOUR CODE HERE ***"
-
+    sum = 0
+    while y > 0:
+        sum = sum + y % 10
+        y = y // 10
+    return sum
 
 def double_eights(n):
     """Return true if n has two eights in a row.
@@ -104,4 +113,14 @@ def double_eights(n):
     False
     """
     "*** YOUR CODE HERE ***"
+    sum = 0
+    while n > 0:
+        if n % 10 == 8:
+            sum = sum + 8
+        else:
+            sum = 0
+        n = n // 10
+        if sum == 16:
+            return True
+    return False
 
