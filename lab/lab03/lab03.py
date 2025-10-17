@@ -15,7 +15,8 @@ def print_if(s, f):
     """
     for x in s:
         "*** YOUR CODE HERE ***"
-
+        if f(x):
+            print(x)
 
 def close(s: list[int], k: int) -> int:
     """Return how many elements of s are within k of their index.
@@ -34,6 +35,8 @@ def close(s: list[int], k: int) -> int:
     count = 0
     for i in range(len(s)):  # Use a range to loop over indices
         "*** YOUR CODE HERE ***"
+        if abs(i - s[i]) <= k:
+            count = count + 1
     return count
 
 
@@ -49,7 +52,7 @@ def close_list(s: list[int], k: int) -> list[int]:
     [2, 4, 3, 5]
     """
     assert k >= 0
-    return [___ for i in range(len(s)) if ___]
+    return [s[i] for i in range(len(s)) if abs(i - s[i]) <= k]
 
 
 from math import sqrt
@@ -65,7 +68,7 @@ def squares(s: list[int]) -> list[int]:
     >>> squares(seq)
     []
     """
-    return [___ for n in s if ___]
+    return [round(sqrt(n)) for n in s if sqrt(n) == round(sqrt(n))]
 
 
 def double_eights(n: int) -> bool:
@@ -90,6 +93,14 @@ def double_eights(n: int) -> bool:
     True
     """
     "*** YOUR CODE HERE ***"
+    def helper(num, pre):
+        if num  ==0:
+            return False
+        last = num % 10
+        if last == 8 and pre:
+            return True
+        return helper(num // 10, last == 8)
+    return helper(n, False)
 
 
 def make_onion(f, g):
@@ -118,11 +129,11 @@ def make_onion(f, g):
     """
     def can_reach(x, y, limit):
         if limit < 0:
-            return ____
+            return False
         elif x == y:
-            return ____
+            return True
         else:
-            return can_reach(____, ____, limit - 1) or can_reach(____, ____, limit - 1)
+            return can_reach(f(x), y, limit - 1) or can_reach(g(x), y, limit - 1)
     return can_reach
 
 
