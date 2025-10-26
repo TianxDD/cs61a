@@ -1,6 +1,6 @@
 # CS61A 2025 FALL
-课程网址 https://cs61a.org/
-教材网址 https://www.composingprograms.com/
+课程网址 https://cs61a.org/  
+教材网址 https://www.composingprograms.com/  
 推荐搭配DeepL使用
 ## homework
 
