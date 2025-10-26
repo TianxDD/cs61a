@@ -32,7 +32,7 @@ def buy(fruits_to_buy: list[str], prices: dict[str, int], total_amount: int) -> 
             price = prices[fruit]
             for k in range(1, (amount // price) + 1):
                 # Hint: The display function will help you add fruit to the cart.
-                add(fruits[1:], amount - price * k, display(fruit, k))
+                add(fruits[1:], amount - price * k, cart + display(fruit, k))
     add(fruits_to_buy, total_amount, '')
 
 
