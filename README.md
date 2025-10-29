@@ -38,6 +38,9 @@
 - Q3: Buying Fruit  
 注意`display`函数的用法
 
+### lab 05
+
+- Q7: 分支处理和结果传递
 
 ## project
 
