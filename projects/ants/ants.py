@@ -225,7 +225,7 @@ class ShortThrower(ThrowerAnt):
     food_cost = 2
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 4
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 4
 
 
@@ -288,11 +288,16 @@ class ContainerAnt(Ant):
     def can_contain(self, other: Ant) -> bool:
         # BEGIN Problem 8a
         "*** YOUR CODE HERE ***"
+        if self.ant_contained is None and not other.is_container:
+            return True
+        return False
         # END Problem 8a
 
     def store_ant(self, ant: Ant):
         # BEGIN Problem 8a
         "*** YOUR CODE HERE ***"
+        if self.ant_contained is None:
+            self.ant_contained = ant
         # END Problem 8a
 
     def remove_ant(self, ant: Ant):
@@ -313,6 +318,8 @@ class ContainerAnt(Ant):
     def action(self, gamestate: GameState):
         # BEGIN Problem 8a
         "*** YOUR CODE HERE ***"
+        if self.ant_contained is not None:
+            gamestate.ants_take_actions
         # END Problem 8a
 
 
