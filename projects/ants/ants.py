@@ -129,7 +129,13 @@ class Ant(Insect):
             place.ant = self
         else:
             # BEGIN Problem 8b
-            assert place.ant is None, 'Too many ants in {0}'.format(place)
+            if place.ant.can_contain(self):
+                place.ant.store_ant(self)
+            elif self.can_contain(place.ant):
+                self.store_ant(place.ant)
+                place.ant = self
+            else:
+                assert place.ant is None, 'Too many ants in {0}'.format(place)
             # END Problem 8b
         Insect.add_to(self, place)
 
@@ -375,7 +381,7 @@ class ContainerAnt(Ant):
         # BEGIN Problem 8a
         "*** YOUR CODE HERE ***"
         if self.ant_contained is not None:
-            gamestate.ants_take_actions
+            self.ant_contained.action(gamestate)
         # END Problem 8a
 
 
@@ -386,11 +392,29 @@ class ProtectorAnt(ContainerAnt):
     food_cost = 4
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 8c
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
+
+    def __init__(self, health: int = 2):
+        super().__init__(health)
     # END Problem 8c
 
 # BEGIN Problem 9
 # The TankAnt class
+class TankAnt(ContainerAnt):
+    name = 'Tank'
+    food_cost = 6
+    damage = 1
+    implemented = True
+    
+    def __init__(self, health: int = 2):
+        super().__init__(health)
+
+    def action(self, gamestate: GameState):
+        bees = list(self.place.bees)
+        for bee in bees:
+            bee.reduce_health(self.damage)
+        super().action(gamestate)
+            
 # END Problem 9
 
 
