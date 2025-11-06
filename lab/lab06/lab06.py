@@ -248,9 +248,9 @@ class Coin:
         "*** YOUR CODE HERE ***"
         time = Mint.present_year - self.year
         if time > 50:
-            return time - 50 + self.cents
+            return time - 50 + self.cents # type: ignore
         else:
-            return self.cents
+            return self.cents # type: ignore
 
 
 class Nickel(Coin):

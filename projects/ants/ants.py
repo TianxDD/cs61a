@@ -333,10 +333,10 @@ class HungryAnt(Ant):
         if self.cooldown != 0:
             self.cooldown = self.cooldown - 1
         else:
-            bees = self.place.bees
+            bees = self.place.bees # type: ignore
             if bees:
                 bee = random_bee(bees)
-                bee.reduce_health(bee.health)
+                bee.reduce_health(bee.health) # type: ignore
                 self.cooldown = self.chew_cooldown
 
 # END Problem 7
@@ -415,7 +415,7 @@ class TankAnt(ContainerAnt):
         super().__init__(health)
 
     def action(self, gamestate: GameState):
-        bees = list(self.place.bees)
+        bees = list(self.place.bees) # type: ignore
         for bee in bees:
             bee.reduce_health(self.damage)
         super().action(gamestate)
@@ -464,13 +464,13 @@ class QueenAnt(ThrowerAnt):
         # BEGIN Problem 12
         "*** YOUR CODE HERE ***"
         super().action(gamestate)
-        current_place = self.place.exit
+        current_place = self.place.exit # type: ignore
         while current_place is not None:
             if current_place.ant:
                 if current_place.ant.is_container:
                     current_place.ant.double()
-                    if current_place.ant.ant_contained is not None:
-                        current_place.ant.ant_contained.double()
+                    if current_place.ant.ant_contained is not None: # type: ignore
+                        current_place.ant.ant_contained.double() # type: ignore
                 else:
                     current_place.ant.double()
             current_place = current_place.exit
