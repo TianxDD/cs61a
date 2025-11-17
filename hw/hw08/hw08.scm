@@ -23,10 +23,8 @@
 
 (define (no-repeats s) 
     (cond ((null? s) ())
-          (else 
-                (cons (car s)
-                    
-                )
-          )
+          (else (cons (car s) 
+                      (no-repeats (filter (lambda (x) (not (= (car s) x))) (cdr s))
+                      )))
     )
 )
