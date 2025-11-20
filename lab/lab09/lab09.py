@@ -114,7 +114,7 @@ def eval_define(expressions):
     bindings[key] = value
     return key
 
-OPERATORS = { "//": floor_div, "+": addition, "-": subtraction, "*": multiplication, "/": division }
+OPERATORS = { "//": floor_div, "+": addition, "-": subtraction, "*": multiplication, "/": division } # type: ignore
 
 class Link:
     """A linked list.
