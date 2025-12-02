@@ -35,15 +35,9 @@ def scheme_eval(expr, env, _=None): # Optional third argument is ignored
         return SPECIAL_FORMS[first](rest, env)
     else:
         # BEGIN PROBLEM 3
-        '''
-        scheme_eval 的 Docstring
-        
-        :param expr: 说明
-        :param env: 
-        :param _: 说明
-        :return: 说明
-        :rtype: Any | None
-        '''
+        procedure = scheme_eval(first, env)
+        args = map_link(lambda expr: scheme_eval(expr, env), rest)
+        return scheme_apply(procedure, args, env)
         # END PROBLEM 3
 
 def scheme_apply(procedure, args, env):
