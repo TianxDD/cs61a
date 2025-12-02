@@ -35,7 +35,15 @@ def scheme_eval(expr, env, _=None): # Optional third argument is ignored
         return SPECIAL_FORMS[first](rest, env)
     else:
         # BEGIN PROBLEM 3
-        "*** YOUR CODE HERE ***"
+        '''
+        scheme_eval 的 Docstring
+        
+        :param expr: 说明
+        :param env: 
+        :param _: 说明
+        :return: 说明
+        :rtype: Any | None
+        '''
         # END PROBLEM 3
 
 def scheme_apply(procedure, args, env):
@@ -46,11 +54,23 @@ def scheme_apply(procedure, args, env):
        assert False, "Not a Frame: {}".format(env)
     if isinstance(procedure, BuiltinProcedure):
         # BEGIN PROBLEM 2
-        "*** YOUR CODE HERE ***"
+        if args == nil:
+            args_list = []
+        else:
+            arg_first = args.first
+            arg_rest = args.rest
+            args_list = []
+            while arg_rest != nil:
+                args_list.append(arg_first)
+                arg_first = arg_rest.first
+                arg_rest = arg_rest.rest
+            args_list.append(arg_first)
+        if procedure.need_env is True:
+            args_list.append(env)
         # END PROBLEM 2
         try:
             # BEGIN PROBLEM 2
-            "*** YOUR CODE HERE ***"
+            return procedure.py_func(*args_list)
             # END PROBLEM 2
         except TypeError as err:
             raise SchemeError('incorrect number of arguments: {0}'.format(procedure))
